@@ -1,31 +1,25 @@
 [
     {
-      "_id": "62bde8323fb85cfdfc3d7308",
       "isComplete": false,
       "todo": "Adeline"
     },
     {
-      "_id": "62bde832067cc744d1cd6139",
-      "isComplete": false,
+      "isComplete": true,
       "todo": "Thompson"
     },
     {
-      "_id": "62bde8324a9c6dc76e27d8bc",
       "isComplete": false,
       "todo": "Mcneil"
     },
     {
-      "_id": "62bde8324013cfa0fb5b5620",
       "isComplete": false,
       "todo": "Dorthy"
     },
     {
-      "_id": "62bde83211d49bb4d9394c64",
       "isComplete": false,
       "todo": "Marla"
     },
     {
-      "_id": "62bde832b79d9fc698cecc5e",
       "isComplete": false,
       "todo": "Elizabeth"
     }

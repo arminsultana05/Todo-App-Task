@@ -11,7 +11,7 @@ const EditableTable = ({ columns, rows, actions }) => {
 
     const [todo, setTodo] = useState('');
 
-    // console.log(rows);
+    console.log(rows);
 
     useEffect(() => {
         setRowsState(rows)
@@ -27,7 +27,20 @@ const EditableTable = ({ columns, rows, actions }) => {
     //Delete row
     const handleRemoveRow = (rowID) => {
 
-        
+        //Delete row from database
+        // if (window.confirm('Are you sure you want to delete this row?')) {
+            fetch(`http://localhost:5000/tasks/${rowID}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    setRowsState(data)
+                }
+                )    
     }
 
     const handleOnChangeField = (e, rowID) => {
@@ -44,10 +57,10 @@ const EditableTable = ({ columns, rows, actions }) => {
         setEditedRow(undefined);
         setOpen(undefined);
     }
-    
-    
+
+
     const handleSaveRowChanges = () => {
-       
+
     }
 
     return (
@@ -62,13 +75,13 @@ const EditableTable = ({ columns, rows, actions }) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {rowsState.map((row, index) => {
+                    {rowsState.map((row) => {
 
 
                         return (<tr key={row._id}>
                             <td>
-                                <div class="form-control">
-                                    <input type="checkbox" class="checkbox checkbox-primary" />
+                                <div className="form-control">
+                                    <input type="checkbox" className="checkbox checkbox-primary" />
                                 </div>
                             </td>
                             <td>

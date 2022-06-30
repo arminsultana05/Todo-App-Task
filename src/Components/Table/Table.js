@@ -1,31 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import EditableTable from "./EditableTable";
 import Spinner from '../Shared/Spinner';
+import useTask from '../Hooks/useTask';
 
 function Table() {
-  const [task, setTask] = useState([]);
-  const [spinner, setSpinner] = useState(false);
+  const {task, spinner} = useTask();
   const columns = [
     { field: 'complete', fieldName: 'Is Complete' },
-    { field: 'name', fieldName: 'Task' }
+    { field: 'name', fieldName: 'Task' },
+    { field: 'action', fieldName: 'Action' },
   ];
 
 
-  useEffect(() => {
-    setSpinner(true);
-    fetch('data.json')
-      .then(res => res.json())
-      .then(data => {
-        setTask(data);
-        setSpinner(false);
-      })
-  }, []);
+  
 
 //   console.log(task)
   return (
     <>
       {
-        spinner ? <Spinner /> :
+        // spinner ? <Spinner /> :
           <div className='mb-10 pt-20'>
             <EditableTable columns={columns} rows={task} actions />
           </div>
