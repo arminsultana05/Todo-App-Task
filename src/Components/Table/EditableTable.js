@@ -13,6 +13,11 @@ const EditableTable = ({ columns, rows, actions }) => {
     const [todo, setTodo] = useState('');
     // console.log(rows);
 
+    const filterRowState = useMemo(() => {
+        return rowsState.filter(row => row.isComplete === false);
+    }
+        , [rowsState]);
+    
     useEffect(() => {
         setRowsState(rows)
     }, [rows])
@@ -107,7 +112,7 @@ const EditableTable = ({ columns, rows, actions }) => {
     console.log(rowsState);
     return (
         <div className='overflow-x-auto overflow-y-hidden'>
-            <h1 className='text-xl font-medium mb-10 md:mb-2 text-center md:text-left'>Data of {rowsState?.length} Candidates</h1>
+            <h1 className='text-xl font-medium mb-10 md:mb-2 text-center md:text-left'>Total of {filterRowState?.length} Work left & { rowsState.length - filterRowState.length} Work done today</h1>
             <table className='w-full table'>
                 <thead >
                     <tr>
@@ -122,17 +127,30 @@ const EditableTable = ({ columns, rows, actions }) => {
 
                         return (<tr key={row._id}>
                             <td>
-                                    <div className="form-control">
-                                    <input type="checkbox"
-                                        // disabled={}
-                                            checked={row.complete}
-                                            className="checkbox checkbox-primary"
-                                            onChange={(e) => {
-                                                setChecked(!checked)
-                                                handleOnChangeField(e, row._id)
-                                            }}
-                                        />
-                                    </div>
+                                {
+                                    row.isComplete ?
+                                        <div className="form-control">
+                                            <input type="checkbox"
+                                                checked={row.isComplete}
+                                                className="checkbox checkbox-primary"
+                                                onChange={(e) => {
+                                                    setChecked(!checked)
+                                                    handleOnChangeField(e, row._id)
+                                                }}
+                                            />
+                                        </div>
+                                        :
+                                        <div className="form-control">
+                                            <input type="checkbox"
+                                                checked={row.complete}
+                                                className="checkbox checkbox-primary"
+                                                onChange={(e) => {
+                                                    setChecked(!checked)
+                                                    handleOnChangeField(e, row._id)
+                                                }}
+                                            />
+                                        </div>
+                                }
                             </td>
                             <td>
                                 {isEditMode && rowIDToEdit === row._id

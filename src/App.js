@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
+import CompletedTask from './Components/CompletedTask/CompletedTask';
 import Navbar from './Components/Shared/Navbar';
 import ToDo from './Components/ToDo/ToDo';
 
@@ -9,6 +10,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/todo' element={<ToDo/>}></Route>
+        <Route path='/completed-task' element={<CompletedTask/>}></Route>
       </Routes>
     </div>
   );

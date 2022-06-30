@@ -4,11 +4,6 @@ import useTask from '../Hooks/useTask';
 
 function Table() {
   const { task } = useTask();
-  //Filter task by isComplete
-  const filteredTask = useMemo(() => {
-    return task?.filter(task => task.isComplete === false);
-  }
-    , [task]);
 
   const columns = [
     { field: 'complete', fieldName: 'Is Complete' },
@@ -25,7 +20,7 @@ function Table() {
       {
         // spinner ? <Spinner /> :
         <div className='mb-10 pt-20'>
-          <EditableTable columns={columns} rows={filteredTask} actions />
+          <EditableTable columns={columns} rows={task} actions />
         </div>
       }
 
