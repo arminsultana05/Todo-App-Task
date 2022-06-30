@@ -8,16 +8,17 @@ const EditableTable = ({ columns, rows, actions }) => {
     const [rowIDToEdit, setRowIDToEdit] = useState(undefined);
     const [rowsState, setRowsState] = useState(rows);
     const [open, setOpen] = useState(undefined);
+    const [checked, setChecked] = useState(false);
 
     const [todo, setTodo] = useState('');
-
-    console.log(rows);
+    // console.log(rows);
 
     useEffect(() => {
         setRowsState(rows)
     }, [rows])
     const [editedRow, setEditedRow] = useState();
     const handleEdit = (rowID) => {
+        // console.log(rowID);
         setIsEditMode(true);
         setEditedRow(undefined);
         setRowIDToEdit(rowID);
@@ -29,23 +30,23 @@ const EditableTable = ({ columns, rows, actions }) => {
 
         //Delete row from database
         // if (window.confirm('Are you sure you want to delete this row?')) {
-            fetch(`http://localhost:5000/tasks/${rowID}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data)
-                    setRowsState(data)
-                }
-                )    
+        fetch(`http://localhost:5000/tasks/${rowID}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setRowsState(data)
+            }
+            )
     }
 
     const handleOnChangeField = (e, rowID) => {
         const { name: fieldName, value } = e.target;
-        // console.log(fieldName, value);
+        // console.log(fieldName);
         setEditedRow({
             id: rowID,
             [fieldName]: value
@@ -59,10 +60,51 @@ const EditableTable = ({ columns, rows, actions }) => {
     }
 
 
+
     const handleSaveRowChanges = () => {
+        console.log('save row changes');
+        let newObject = {}
+        setTimeout(() => {
+            setIsEditMode(undefined);
+
+            const newData = rowsState.map(row => {
+                if (row._id === editedRow.id) {
+                    newObject.todo = todo || row.todo;
+                    newObject.isComplete = checked || row.isComplete;
+
+                    // console.log(name, dob, email, result);
+                }
+
+                return row;
+            })
+
+            // console.log(newObject);
+
+            //PUT newData to API
+
+            fetch(`http://localhost:5000/tasks/${editedRow.id}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newObject)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // alert('Successfully updated');
+                    // console.log('data', data);
+                    if (data) {
+                        setOpen(undefined)
+                    }
+                }
+                )
+            setRowsState(newData);
+            setEditedRow(undefined)
+
+        }, 1000)
 
     }
-
+    console.log(rowsState);
     return (
         <div className='overflow-x-auto overflow-y-hidden'>
             <h1 className='text-xl font-medium mb-10 md:mb-2 text-center md:text-left'>Data of {rowsState?.length} Candidates</h1>
@@ -80,16 +122,24 @@ const EditableTable = ({ columns, rows, actions }) => {
 
                         return (<tr key={row._id}>
                             <td>
-                                <div className="form-control">
-                                    <input type="checkbox" className="checkbox checkbox-primary" />
-                                </div>
+                                    <div className="form-control">
+                                    <input type="checkbox"
+                                        // disabled={}
+                                            checked={row.complete}
+                                            className="checkbox checkbox-primary"
+                                            onChange={(e) => {
+                                                setChecked(!checked)
+                                                handleOnChangeField(e, row._id)
+                                            }}
+                                        />
+                                    </div>
                             </td>
                             <td>
                                 {isEditMode && rowIDToEdit === row._id
                                     ? <input
                                         className='input input-bordered w-full max-w-xs'
                                         type='text'
-                                        defaultValue={editedRow ? editedRow.name : row.todo}
+                                        defaultValue={editedRow ? editedRow.task : row.todo}
                                         id={row._id}
                                         name='name'
                                         onChange={(e) => {
