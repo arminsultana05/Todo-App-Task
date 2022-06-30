@@ -7,7 +7,7 @@ function Table() {
   const [spinner, setSpinner] = useState(false);
   const columns = [
     { field: 'complete', fieldName: 'Is Complete' },
-    { field: 'task', fieldName: 'Task' }
+    { field: 'name', fieldName: 'Task' }
   ];
 
 
@@ -21,7 +21,7 @@ function Table() {
       })
   }, []);
 
-  console.log(task)
+//   console.log(task)
   return (
     <>
       {
