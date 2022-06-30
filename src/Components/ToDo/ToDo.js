@@ -1,10 +1,8 @@
 import React from 'react';
 import { BiMessageRoundedAdd } from 'react-icons/bi';
-import useData from '../Hooks/useData';
+import Table from '../Table/Table';
 
 const ToDo = () => {
-    const [data] = useData();
-    // console.log(data);
     return (
         <div>
             <form className='mt-10 w-1/2 mx-auto'>
@@ -18,7 +16,7 @@ const ToDo = () => {
                 </div>
             </form>
 
-            
+            <Table/>
         </div>
     );
 };
