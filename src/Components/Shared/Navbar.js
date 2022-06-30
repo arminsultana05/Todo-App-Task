@@ -79,7 +79,7 @@ const Navbar = () => {
                                     user[0]?.displayName && <h1 className='cursor-pointer text-xl font-bold border border-gray-500 rounded-sm text-primary px-1' onClick={() => navigate(`dashboard/my-profile`)}>{user[0]?.displayName.split(' ')[0]}</h1>
                                 }
                                 {
-                                    user[0] ? <button onClick={handleSignOut} className='md:ml-24 text-white bg-primary border-2 border-secondary hover:border-2 hover:border-primary hover:bg-gradient hover:text-white  transition-all transition-duration:150ms font-medium hover:font-medium px-5 py-1 rounded-md'>Logout</button> : <button onClick={() => navigate('/login')} className='md:ml-24 text-white bg-primary border-2 border-secondary hover:border-2 hover:border-primary hover:bg-gradient hover:text-white transition-all transition-duration:150ms font-medium hover:font-medium px-5 py-1 rounded-md'>Login</button>
+                                    user[0] ? <button onClick={handleSignOut} className='md:ml-24 text-white bg-primary border-2 border-primary hover:border-2 hover:border-primary hover:bg-gradient hover:text-white  transition-all transition-duration:150ms font-medium hover:font-medium px-5 py-1 rounded-md'>Logout</button> : <button onClick={() => navigate('/login')} className='md:ml-24 text-white bg-primary border-2 border-primary hover:border-2 hover:border-primary hover:bg-gradient hover:text-white transition-all transition-duration:150ms font-medium hover:font-medium px-5 py-1 rounded-md hover:bg-secondary'>Login</button>
                                 }
                             </div>
                         </div>
@@ -152,10 +152,22 @@ const Navbar = () => {
                                     Home
                                 </CustomLink>
                                 <CustomLink
-                                    to="/create-candidate"
+                                    to="/todo"
                                     className="hover:bg-gray-700 hover:text-white text-white block px-3 py-2 rounded-md text-base font-medium"
                                 >
-                                    Create Candidate
+                                    To-Do
+                                </CustomLink>
+                                <CustomLink
+                                    to="/completed-task"
+                                    className="hover:bg-gray-700 hover:text-white text-white block px-3 py-2 rounded-md text-base font-medium"
+                                >
+                                    Completed Tasks
+                                </CustomLink>
+                                <CustomLink
+                                    to="/calendar"
+                                    className="hover:bg-gray-700 hover:text-white text-white block px-3 py-2 rounded-md text-base font-medium"
+                                >
+                                    Calendar
                                 </CustomLink>
                                 
                             </div>
