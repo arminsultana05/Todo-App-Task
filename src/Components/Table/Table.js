@@ -1,6 +1,7 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React from 'react';
 import EditableTable from "./EditableTable";
 import useTask from '../Hooks/useTask';
+import Spinner from '../Shared/Spinner';
 
 function Table() {
   const { task } = useTask();
@@ -11,15 +12,18 @@ function Table() {
     { field: 'action', fieldName: 'Action' },
   ];
 
-
+  let spinner;
+  if (task.length === 0) {
+    spinner = <Spinner />
+  }
 
 
   //   console.log(task)
   return (
     <>
       {
-        // spinner ? <Spinner /> :
-        <div className='mb-10 pt-20 container mx-auto md:w-2/3 w-full'>
+        spinner ? <Spinner /> :
+        <div className='mb-10 mt-5 container mx-auto md:w-2/3 w-full'>
           <EditableTable columns={columns} rows={task} actions />
         </div>
       }

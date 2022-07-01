@@ -6,17 +6,19 @@ import Navbar from './Components/Shared/Navbar';
 import ToDo from './Components/ToDo/ToDo';
 import { Toaster } from 'react-hot-toast';
 import CalendarPage from './Components/Calendar/CalendarPage';
+import Footer from './Components/Shared/Footer';
 
 function App() {
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/todo' element={<ToDo/>}></Route>
-        <Route path='/completed-task' element={<CompletedTask/>}></Route>
-        <Route path='/calendar' element={<CalendarPage/>}></Route>
+        <Route path='/' element={<Home />}></Route>
+        <Route path='/todo' element={<ToDo />}></Route>
+        <Route path='/completed-task' element={<CompletedTask />}></Route>
+        <Route path='/calendar' element={<CalendarPage />}></Route>
       </Routes>
+      <Footer />
       <Toaster />
     </div>
   );

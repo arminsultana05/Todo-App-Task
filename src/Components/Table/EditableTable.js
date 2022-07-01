@@ -74,24 +74,24 @@ const EditableTable = ({ columns, rows, actions }) => {
         //     }
         // })
 
-        
+
         //Delete row from database
         // if (window.confirm('Are you sure you want to delete this row?')) {
-           
-                fetch(`http://localhost:5000/tasks/${rowID}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(res => res.json())
-                .then(data => {
-                    // console.log(data)
-                    setRowsState(data)
-                }
-                )
-            toast.success('Task deleted successfully')
-            
+
+        fetch(`https://infinite-ravine-57327.herokuapp.com/tasks/${rowID}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                setRowsState(data)
+            }
+            )
+        toast.success('Task deleted successfully')
+
     }
 
     const handleOnChangeField = (e, rowID) => {
@@ -133,7 +133,7 @@ const EditableTable = ({ columns, rows, actions }) => {
 
             //PUT newData to API
 
-            fetch(`http://localhost:5000/tasks/${editedRow.id}`, {
+            fetch(`https://infinite-ravine-57327.herokuapp.com/tasks/${editedRow.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -159,8 +159,8 @@ const EditableTable = ({ columns, rows, actions }) => {
     // console.log(rowsState);
     return (
         <div className='overflow-x-auto overflow-y-hidden'>
-            <h1 className='text-xl font-medium mb-10 md:mb-2 text-center md:text-left'>Total of {filterRowState?.length} Work left & {rowsState.length - filterRowState.length} Work done today</h1>
-            <table className='w-full table'>
+            <h1 className='text-xl font-medium md:mb-5 mb-2 text-center'>Total of {filterRowState?.length} Work left & {rowsState.length - filterRowState.length} Work done today</h1>
+            <table className='w-full table table-compact'>
                 <thead >
                     <tr>
                         {columns.map((column) => {
@@ -179,7 +179,7 @@ const EditableTable = ({ columns, rows, actions }) => {
                                         <div className="form-control">
                                             <input type="checkbox"
                                                 checked={row.isComplete}
-                                                className="checkbox checkbox-primary"
+                                                className="checkbox checkbox-primary w-4 h-4"
                                                 onChange={(e) => {
                                                     setChecked(!checked)
                                                     handleOnChangeField(e, row._id)
@@ -190,7 +190,7 @@ const EditableTable = ({ columns, rows, actions }) => {
                                         <div className="form-control">
                                             <input type="checkbox"
                                                 checked={row.complete}
-                                                className="checkbox checkbox-primary"
+                                                className="checkbox checkbox-primary w-4 h-4"
                                                 onChange={(e) => {
                                                     setChecked(!checked)
                                                     handleOnChangeField(e, row._id)

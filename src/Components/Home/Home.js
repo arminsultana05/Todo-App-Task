@@ -3,8 +3,8 @@ import Table from '../Table/Table';
 
 const Home = () => {
     return (
-        <div>
-            <Table/>
+        <div className="px-3 md:px-0">
+            <Table />
         </div>
     );
 };
