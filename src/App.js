@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import CalendarPage from './Components/Calendar/CalendarPage';
 import Footer from './Components/Shared/Footer';
 import Login from './Components/Auth/Login';
+import SignUp from './Components/Auth/SignUp';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path='/completed-task' element={<CompletedTask />}></Route>
         <Route path='/calendar' element={<CalendarPage />}></Route>
         <Route path='/login' element={<Login/>}></Route>
+        <Route path='/signup' element={<SignUp/>}></Route>
       </Routes>
       <Footer />
       <Toaster />
