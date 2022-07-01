@@ -19,7 +19,7 @@ function Table() {
     <>
       {
         // spinner ? <Spinner /> :
-        <div className='mb-10 pt-20'>
+        <div className='mb-10 pt-20 container mx-auto md:w-2/3 w-full'>
           <EditableTable columns={columns} rows={task} actions />
         </div>
       }
