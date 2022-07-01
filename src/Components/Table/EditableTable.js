@@ -43,7 +43,7 @@ const EditableTable = ({ columns, rows, actions }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
+                // console.log(data)
                 setRowsState(data)
             }
             )
@@ -109,7 +109,7 @@ const EditableTable = ({ columns, rows, actions }) => {
         }, 1000)
 
     }
-    console.log(rowsState);
+    // console.log(rowsState);
     return (
         <div className='overflow-x-auto overflow-y-hidden'>
             <h1 className='text-xl font-medium mb-10 md:mb-2 text-center md:text-left'>Total of {filterRowState?.length} Work left & { rowsState.length - filterRowState.length} Work done today</h1>
