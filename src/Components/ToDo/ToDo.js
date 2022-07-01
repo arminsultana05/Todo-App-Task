@@ -1,5 +1,6 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import toast from 'react-hot-toast';
 import { BiMessageRoundedAdd } from 'react-icons/bi';
 import Table from '../Table/Table';
 
@@ -21,6 +22,7 @@ const ToDo = () => {
             .then(res => res.json())
             .then(data => {
                 // console.log(data)
+                toast.success('Task added successfully')
             })
         reset()
     }

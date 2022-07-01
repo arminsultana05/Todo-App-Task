@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import toast from 'react-hot-toast';
 import { BsPencilSquare, BsSaveFill, BsFillTrashFill, BsXSquareFill } from 'react-icons/bs';
 import './EditableTable.css';
+import Swal from 'sweetalert2'
 
 const EditableTable = ({ columns, rows, actions }) => {
     // console.log(rows)
@@ -9,6 +11,7 @@ const EditableTable = ({ columns, rows, actions }) => {
     const [rowsState, setRowsState] = useState(rows);
     const [open, setOpen] = useState(undefined);
     const [checked, setChecked] = useState(false);
+    const [handleAlert, setHandleAlert] = useState(false);
 
     const [todo, setTodo] = useState('');
     // console.log(rows);
@@ -17,7 +20,7 @@ const EditableTable = ({ columns, rows, actions }) => {
         return rowsState.filter(row => row.isComplete === false);
     }
         , [rowsState]);
-    
+
     useEffect(() => {
         setRowsState(rows)
     }, [rows])
@@ -33,20 +36,62 @@ const EditableTable = ({ columns, rows, actions }) => {
     //Delete row
     const handleRemoveRow = (rowID) => {
 
+        // const swalWithBootstrapButtons = Swal.mixin({
+        //     customClass: {
+        //         confirmButton: 'btn btn-success',
+        //         cancelButton: 'btn btn-danger'
+        //     },
+        //     buttonsStyling: false
+        // })
+
+        // swalWithBootstrapButtons.fire({
+        //     title: 'Are you sure?',
+        //     text: "You won't be able to revert this!",
+        //     icon: 'warning',
+        //     showCancelButton: true,
+        //     confirmButtonText: 'Yes, delete it!',
+        //     cancelButtonText: 'No, cancel!',
+        //     reverseButtons: true
+        // }).then((result) => {
+        //     // console.log(result);
+        //     if (result.isConfirmed) {
+        //         setHandleAlert(true);
+        //         swalWithBootstrapButtons.fire(
+        //             'Deleted!',
+        //             'Your file has been deleted.',
+        //             'success'
+        //         )
+        //     } else if (
+        //         /* Read more about handling dismissals below */
+        //         result.dismiss === Swal.DismissReason.cancel
+        //     ) {
+        //         setHandleAlert(false);
+        //         swalWithBootstrapButtons.fire(
+        //             'Cancelled',
+        //             'Your imaginary file is safe :)',
+        //             'error'
+        //         )
+        //     }
+        // })
+
+        
         //Delete row from database
         // if (window.confirm('Are you sure you want to delete this row?')) {
-        fetch(`http://localhost:5000/tasks/${rowID}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        })
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data)
-                setRowsState(data)
-            }
-            )
+           
+                fetch(`http://localhost:5000/tasks/${rowID}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // console.log(data)
+                    setRowsState(data)
+                }
+                )
+            toast.success('Task deleted successfully')
+            
     }
 
     const handleOnChangeField = (e, rowID) => {
@@ -62,6 +107,7 @@ const EditableTable = ({ columns, rows, actions }) => {
         setIsEditMode(undefined);
         setEditedRow(undefined);
         setOpen(undefined);
+        toast.error('Task not updated')
     }
 
 
@@ -106,13 +152,14 @@ const EditableTable = ({ columns, rows, actions }) => {
             setRowsState(newData);
             setEditedRow(undefined)
 
+            toast.success('Task updated successfully')
         }, 1000)
 
     }
     // console.log(rowsState);
     return (
         <div className='overflow-x-auto overflow-y-hidden'>
-            <h1 className='text-xl font-medium mb-10 md:mb-2 text-center md:text-left'>Total of {filterRowState?.length} Work left & { rowsState.length - filterRowState.length} Work done today</h1>
+            <h1 className='text-xl font-medium mb-10 md:mb-2 text-center md:text-left'>Total of {filterRowState?.length} Work left & {rowsState.length - filterRowState.length} Work done today</h1>
             <table className='w-full table'>
                 <thead >
                     <tr>

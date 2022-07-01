@@ -4,6 +4,7 @@ import CompletedTask from './Components/CompletedTask/CompletedTask';
 import Home from './Components/Home/Home';
 import Navbar from './Components/Shared/Navbar';
 import ToDo from './Components/ToDo/ToDo';
+import { Toaster } from 'react-hot-toast';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/todo' element={<ToDo/>}></Route>
         <Route path='/completed-task' element={<CompletedTask/>}></Route>
       </Routes>
+      <Toaster />
     </div>
   );
 }
