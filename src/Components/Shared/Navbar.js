@@ -26,7 +26,7 @@ const Navbar = () => {
             <div className="bg-[#0F1729] hidden md:block">
                 <div className="flex justify-between items-center h-12 container mx-auto">
                     <div className=" text-white text-md">
-                        <p>Ayon Jodder | MERN Stack Developer</p>
+                        <p>Armin Sultana |React.js Developer</p>
                     </div>
                     <div className="right-icon flex text-white">
                         <a href="https://www.facebook.com/ayon.jodder.75/"><BsFacebook className='ml-8 text-xl'></BsFacebook></a>
