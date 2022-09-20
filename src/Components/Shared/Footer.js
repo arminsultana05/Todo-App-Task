@@ -14,9 +14,9 @@ const Footer = () => {
                     <p className="hover:text-gray-500 text-base cursor-pointer leading-4 text-gray-800">Privacy Policy</p>
                 </div>
                 <div className="right-icon flex text-black mt-4">
-                        <a href="https://www.facebook.com/ayon.jodder.75/"><BsFacebook className='ml-8 text-2xl'></BsFacebook></a>
-                        <a href="https://www.linkedin.com/in/ayon-jodder/"><BsLinkedin className='ml-8 text-2xl'></BsLinkedin></a>
-                        <a href="https://github.com/AyonJD"><BsGithub className='ml-8 text-2xl'></BsGithub></a>
+                        <a href="https://www.facebook.com/armin.sultana.58/" target='_blank'><BsFacebook className='ml-8 text-2xl'></BsFacebook></a>
+                        <a href="https://www.linkedin.com/in/armin-sultana-5209a6237/" target='_blank'><BsLinkedin className='ml-8 text-2xl'></BsLinkedin></a>
+                        <a href="https://github.com/arminsultana05" target='_blank'><BsGithub className='ml-8 text-2xl'></BsGithub></a>
                     </div>
                 <div className="flex items-center mt-6">
                     <p className="text-base leading-4 text-gray-800">
