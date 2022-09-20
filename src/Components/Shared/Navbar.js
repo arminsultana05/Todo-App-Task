@@ -29,9 +29,9 @@ const Navbar = () => {
                         <p>Armin Sultana |React.js Developer</p>
                     </div>
                     <div className="right-icon flex text-white">
-                        <a href="https://www.facebook.com/ayon.jodder.75/"><BsFacebook className='ml-8 text-xl'></BsFacebook></a>
-                        <a href="https://www.linkedin.com/in/ayon-jodder/"><BsLinkedin className='ml-8 text-xl'></BsLinkedin></a>
-                        <a href="https://github.com/AyonJD"><BsGithub className='ml-8 text-xl'></BsGithub></a>
+                        <a href="https://www.facebook.com/armin.sultana.58/" target='_blank'><BsFacebook className='ml-8 text-xl'></BsFacebook></a>
+                        <a href="https://www.facebook.com/armin.sultana.58/" target='_blank'><BsLinkedin className='ml-8 text-xl'></BsLinkedin></a>
+                        <a href="https://github.com/arminsultana05" target='_blank'><BsGithub className='ml-8 text-xl'></BsGithub></a>
                     </div>
                 </div>
             </div>
